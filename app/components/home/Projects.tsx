@@ -1,44 +1,32 @@
 // components/Projects.tsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProjectModal from "./ProjectModal";
 
-const projects = [
-  {
-    title: "Inspection and Testing",
-    description:
-      "Ensure safety, quality, and compliance with our thorough inspection and testing services.",
-    details:
-      "Our advanced facilities and skilled professionals deliver accurate evaluations, helping you meet standards and safeguard your business. Trust us for reliable results.",
-    completionDate: "March 2023",
-    hashtags: ["#Safety", "#QualityControl", "#Compliance", "#Inspection", "#RiskAssessment", "#Industrial"],
-  },
-  {
-    title: "Training and Certification",
-    description:
-      "Equip your team with top skills through our comprehensive training programs.",
-    details:
-      "We offer certifications to ensure your workforce has the latest knowledge and best practices. Achieve excellence and lead your field with our expert-led courses.",
-    completionDate: "July 2023",
-    hashtags: ["#Education", "#SkillDevelopment", "#Certification", "#WorkforceTraining", "#ProfessionalGrowth", "#Learning"],
-  },
-  {
-    title: "Consulting",
-    description:
-      "Unlock your business’s potential with our expert consulting. We provide custom solutions.",
-    details:
-      "From planning to execution, we’re here to support your journey to lasting success.",
-    completionDate: "October 2023",
-    hashtags: ["#Business", "#Consulting", "#Strategy", "#Growth", "#Planning", "#Innovation", "#Optimization"],
-  },
-];
+import { fetchAllProjects, fetchProjectById } from "@/graphql";
+import { Project } from "@/app/interfaces/projects";
 
 const Projects = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const openModal = (project: any) => {
+  useEffect(() => {
+    // Fetch all projects on component mount
+    const getProjects = async () => {
+      const data = await fetchAllProjects();
+      setProjects(data);
+    };
+    getProjects();
+  }, []);
+
+  // Fetch specific project by ID for the modal
+  const openModal = async (id: string) => {
+    setLoading(true);
+    const project = await fetchProjectById(id);
     setSelectedProject(project);
+    setLoading(false);
     setModalOpen(true);
   };
 
@@ -48,36 +36,60 @@ const Projects = () => {
   };
 
   return (
-    <section className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6 py-8 mt-10 bg-dark_bg px-4">
-      {projects.map((project, index) => (
-        <div
-          key={index}
-          className="bg-subdark p-6 rounded-lg text-white shadow-lg w-full md:w-1/3"
-        >
-          <h3 className="text-2xl text-zinc-400 font-medium mb-2">{project.title}</h3>
-          <p className="text-gray-400 text-[12px] mb-2">Completed: {project.completionDate}</p>
-          <p className="text-gray-400 text-[12px] mb-4">{project.description}</p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.hashtags.map((tag, tagIndex) => (
-              <span
-                key={tagIndex}
-                className="text-xs bg-gray-700 text-white py-1 px-2 rounded-full"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          <button
-            onClick={() => openModal(project)}
-            className="bg-purplish text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-purple-600 transition mt-6"
-          >
-            View detail →
-          </button>
-        </div>
-      ))}
+    <section className="py-12 bg-dark_bg text-white px-4">
+      {/* Section Header */}
+      <div className="text-center mb-10">
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-purplish via-bluish to-pinkish bg-clip-text text-transparent">
+          Our Projects
+        </h2>
+        <p className="text-gray-400 mt-2">
+          Explore some of the impactful projects we've delivered for our clients.
+        </p>
+      </div>
 
+      {/* Project Cards */}
+      <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="bg-subdark p-6 rounded-lg text-white shadow-lg w-full md:w-1/3"
+          >
+            <h3 className="text-2xl text-zinc-400 font-medium mb-2">{project.projectTitle}</h3>
+            <p className="text-gray-400 text-[12px] mb-2">Completed: {project.projectDate}</p>
+            <p className="text-gray-400 text-[12px] mb-4">{project.projectShortDescription}</p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {/* Split tags into an array and map them */}
+              {typeof project.projectTags === "string"
+                ? project.projectTags.split(" ").map((tag: string, tagIndex: number) => (
+                    <span
+                      key={tagIndex}
+                      className="text-xs bg-gray-700 text-white py-1 px-2 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))
+                : project.projectTags.map((tag: string, tagIndex: number) => (
+                    <span
+                      key={tagIndex}
+                      className="text-xs bg-gray-700 text-white py-1 px-2 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+            </div>
+            <button
+              onClick={() => openModal(project.id)} // Fetch specific project on click
+              className="bg-purplish text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-purple-600 transition mt-6"
+            >
+              View detail →
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Modal */}
       {isModalOpen && selectedProject && (
-        <ProjectModal project={selectedProject} onClose={closeModal} />
+        <ProjectModal project={selectedProject} onClose={closeModal} loading={loading} />
       )}
     </section>
   );
