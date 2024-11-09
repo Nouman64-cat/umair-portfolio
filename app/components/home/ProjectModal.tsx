@@ -6,10 +6,10 @@ interface Project {
   projectTitle: string;
   projectDate: string;
   projectDetails: string;
-  projectTags: string;
+  projectTags: string | string[];
 }
 
-const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
+const ProjectModal = ({ project, onClose, loading }: { project: Project; onClose: () => void; loading: boolean }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
       <div className="bg-dark_bg p-6 rounded-lg max-w-2xl w-full transform transition-transform duration-300 scale-100 shadow-xl">
