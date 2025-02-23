@@ -15,12 +15,12 @@ export default {
         purplish: '#8B43EF',
         subdark: '#343434',
         rebrand: '#6961F9',
-        dark_bg: '#121212',
+        dark_bg: '#0F0F0F',
       },
       fontFamily: {
         axiforma: ['Axiforma', 'sans-serif'],
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 } satisfies Config;
