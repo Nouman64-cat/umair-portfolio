@@ -1,47 +1,67 @@
 "use client";
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Code2 } from "lucide-react";
+import { Briefcase, GraduationCap, Code2, Linkedin } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import ResumeDownload from "../components/download/ResumeDownload";
 
 const AboutPage = () => {
   const skills = [
-    "React.js",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Tailwind CSS",
-    "MongoDB",
-    "GraphQL",
-    "AWS",
+    "Bookkeeping",
+    "Tax Preparation",
+    "Tax Compliance",
+    "GIFI Mapping",
+    "IRS & CRA Filings",
+    "Financial Analysis",
+    "QuickBooks",
+    "Xero",
+    "Oracle ERP",
+    "Stripe Atlas",
+    "Freshbooks",
+    "Pro Connect"
   ];
 
   const experience = [
     {
-      title: "Senior Full Stack Developer",
-      company: "Tech Innovators Inc",
-      period: "2021 - Present",
+      title: "Founder & CEO | Booktax Solutions Inc.",
+      company: "Booktax Solutions Inc.",
+      period: "2025 - Present",
       description:
-        "Leading development of enterprise-level web applications and mentoring junior developers.",
+        "Providing bookkeeping, tax, and financial advisory services to businesses in the US, Canada, and the UK.",
     },
     {
-      title: "Frontend Developer",
-      company: "Digital Solutions Co.",
-      period: "2019 - 2021",
+      title: "Billing Specialist | TCP Software",
+      company: "TCP Software",
+      period: "2024 - Present",
       description:
-        "Developed responsive web interfaces and collaborated with UX teams to implement design systems.",
+        "Overseeing revenue operations, financial reporting, and account reconciliations.",
     },
+    {
+        title: "Senior Accountant | Cedar Financial",
+        company: "Cedar Financials",
+        period: "2022 - 2024",
+        description:
+          "Led accounting, financial statement preparation, and tax compliance.",
+      },
+      {
+        title: "Bookkeeper | Virtuous Bookkeeping",
+        company: "Virtuous Bookkeeping Inc.",
+        period: "2021 - 2022",
+        description:
+          "Managed client accounts, reconciliations, and financial records using QuickBooks and Xero.",
+      },
   ];
 
   const education = [
     {
-      degree: "MSc Computer Science",
-      university: "Stanford University",
-      period: "2017 - 2019",
+      degree: "BS Accounting & Taxation",
+      university: "University of Punjab",
+      period: "2021 - 2025",
     },
     {
-      degree: "BSc Software Engineering",
-      university: "MIT",
-      period: "2013 - 2017",
+      degree: "ACCA",
+      university: "ACCA",
+      period: "2025 - Present",
     },
   ];
 
@@ -54,22 +74,23 @@ const AboutPage = () => {
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col lg:flex-row gap-8 mb-16"
         >
-
           <div className=" space-y-6">
             <div className="backdrop-blur-lg bg-white/10 rounded-2xl p-8 border border-gray-200/20 shadow-xl">
               <h1 className="text-4xl font-bold text-white mb-4">
-                Hi, I'm Umair Aslam 👋
+                Hi, I'm Muhammad Umair 👋
               </h1>
               <p className="text-zinc-300 text-lg leading-relaxed">
-                A passionate full-stack developer with 6+ years of experience in
-                creating scalable web applications. Specialized in modern
-                JavaScript ecosystems and cloud-native architectures. I bridge
-                the gap between technical excellence and business value,
-                delivering solutions that drive measurable results.
+              A tax and accounting professional specializing in bookkeeping, taxation, FP&A, and financial modeling. As the founder of Booktax Solutions Inc., I help businesses streamline financial operations, optimize tax strategies, and drive growth. With expertise in QuickBooks, Xero, and Oracle ERP, I deliver precision-driven financial solutions for clients across the US, Canada, and the UK.
               </p>
-              <button className="mt-6 px-6 py-3 bg-bluish/90 hover:bg-bluish text-white rounded-lg transition-all">
-                Let's Connect
-              </button>
+              <Link href="https://www.linkedin.com/in/umair0007/">
+                <button className="mt-6 px-6 py-3 bg-bluish/90 hover:bg-bluish flex justify-center items-center gap-3 text-white rounded-lg transition-all">
+                  Let's Connect
+                  <div>
+
+                  <Linkedin />
+                  </div>
+                </button>
+              </Link>
             </div>
           </div>
         </motion.div>
@@ -78,7 +99,7 @@ const AboutPage = () => {
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
             <Code2 className="mr-3 w-8 h-8 text-bluish" />
-            Technical Expertise
+            Financial Expertise
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {skills.map((skill, index) => (
@@ -142,15 +163,7 @@ const AboutPage = () => {
             </div>
           </section>
         </div>
-
-        {/* Footer Note */}
-        <div className="mt-16 text-center text-zinc-400 text-sm">
-          <p>© 2024 Umair Aslam. All rights reserved.</p>
-          <p className="mt-2">
-            Continuously learning and growing in the ever-evolving world of
-            technology
-          </p>
-        </div>
+          <ResumeDownload />
       </div>
     </div>
   );

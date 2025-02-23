@@ -21,8 +21,8 @@ const DesktopNavbar = () => {
                 className=""
               />
               <div className="ml-3">
-                <div className="text-white font-bold text-md">UA</div>
-                <p className="text-[10px] text-zinc-300">Umair Aslam</p>
+                <div className="text-white font-bold text-md">MU</div>
+                <p className="text-[10px] text-zinc-300">Muhammad Umair</p>
               </div>
             </div>
           </Link>

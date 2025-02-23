@@ -23,8 +23,8 @@ const MobileNavbar = () => {
               className="rounded-full border-2 border-gray-200/30"
             />
             <div className="ml-2">
-              <div className="text-white font-bold text-xl">UA</div>
-              <p className="text-[12px] text-zinc-300">Umair Aslam</p>
+              <div className="text-white font-bold text-xl">MU</div>
+              <p className="text-[12px] text-zinc-300">Muhammad Umair</p>
             </div>
           </div>
         </Link>

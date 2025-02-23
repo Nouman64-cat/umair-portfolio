@@ -24,7 +24,7 @@ const Hero = () => {
             variants={fadeInVariants}
             className="mb-6 inline-block bg-purplish/20 px-8 py-2 rounded-full text-sm font-medium text-purple-300 ring-1 ring-purple-500/30"
           >
-            Accounting and Finance Specialist
+            Accounting and Taxation Specialist
           </motion.span>
 
           {/* Heading */}
@@ -33,7 +33,7 @@ const Hero = () => {
             className="text-4xl font-semibold leading-tight md:text-6xl lg:text-7xl"
           >
             <span className="bg-gradient-to-r from-purple-400 to-yellowish bg-clip-text text-transparent">
-              Umair Aslam
+              Muhammad Umair
             </span>
           </motion.h1>
 
@@ -42,16 +42,12 @@ const Hero = () => {
             variants={fadeInVariants}
             className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-zinc-400 md:text-xl"
           >
-            Leveraging cutting-edge financial technologies and modern development 
-            practices to deliver innovative solutions that drive business growth 
-            and operational efficiency.
+            Empowering businesses with precision-driven accounting, taxation,
+            and financial automation.
           </motion.p>
 
           {/* CTA Button */}
-          <motion.div
-            variants={fadeInVariants}
-            className="mt-8"
-          >
+          <motion.div variants={fadeInVariants} className="mt-8">
             <Link href="/contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}

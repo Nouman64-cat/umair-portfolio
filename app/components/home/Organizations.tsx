@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 
-const organizations = ["Cedar Financials", "TCP Software", "CareerTweakrz", "BookTax Solution"];
+const organizations = ["Cedar Financials", "TCP Software", "CareerTweakrz", "BookTax Solution", "Virtuous Bookkeeping Inc."];
 
 const Organizations = () => {
   const staggerVariants = {

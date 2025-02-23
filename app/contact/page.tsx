@@ -1,41 +1,42 @@
 "use client";
 import { motion } from "framer-motion";
 import { Linkedin, Mail, Instagram, Facebook, Globe } from "lucide-react";
+import ResumeDownload from "../components/download/ResumeDownload";
 
 const ContactPage = () => {
   const socialPlatforms = [
     {
       name: "LinkedIn",
       icon: <Linkedin className="w-8 h-8" />,
-      link: "https://linkedin.com/in/yourprofile",
+      link: "https://www.linkedin.com/in/umair0007/",
       color: "text-[#0A66C2]",
       hover: "hover:bg-[#0A66C2]/10"
     },
     {
       name: "Email",
       icon: <Mail className="w-8 h-8" />,
-      link: "mailto:your.email@domain.com",
+      link: "mailto:muhammadumairprofessional@outlook.com",
       color: "text-[#EA4335]",
       hover: "hover:bg-[#EA4335]/10"
     },
     {
       name: "Instagram",
       icon: <Instagram className="w-8 h-8" />,
-      link: "https://instagram.com/yourprofile",
+      link: "https://www.instagram.com/taxwithumair/",
       color: "text-[#E4405F]",
       hover: "hover:bg-[#E4405F]/10"
     },
     {
       name: "Facebook",
       icon: <Facebook className="w-8 h-8" />,
-      link: "https://facebook.com/yourprofile",
+      link: "https://www.facebook.com/jannat.chauhan.90260",
       color: "text-[#1877F2]",
       hover: "hover:bg-[#1877F2]/10"
     },
     {
-      name: "Portfolio",
+      name: "Resume",
       icon: <Globe className="w-8 h-8" />,
-      link: "https://yourportfolio.com",
+      link: "./muhammad_umair_resume.pdf",
       color: "text-purplish",
       hover: "hover:bg-purplish/10"
     }
@@ -100,6 +101,7 @@ const ContactPage = () => {
             </motion.a>
           ))}
         </div>
+        <ResumeDownload />
 
         {/* CTA Section */}
         <motion.div

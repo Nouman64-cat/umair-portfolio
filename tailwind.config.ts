@@ -16,6 +16,7 @@ export default {
         subdark: '#343434',
         rebrand: '#6961F9',
         dark_bg: '#0F0F0F',
+        purplish_dark: '#5B21B6'
       },
       fontFamily: {
         axiforma: ['Axiforma', 'sans-serif'],
